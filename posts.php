@@ -103,9 +103,9 @@ function wpc_post_submitbox_misc_actions( $post ){
         </span></a>
         <div id="post-cacheability-select" class="hide-if-js">
             <input type="hidden" name="initial-cacheability" id="hidden-post-cacheabililty" value="<?php echo $cache_status->short_status(); ?>">
-            <input type="radio" name="cacheability" id="cacheability-radio-0" value="0" <?php checked( 0, $cache_status->status() ); ?>> <label for="cacheability-radio-0"$
-            <input type="radio" name="cacheability" id="cacheability-radio-1" value="1" <?php checked( 1, $cache_status->status() ); ?>> <label for="cacheability-radio-1"$
-            <input type="radio" name="cacheability" id="cacheability-radio-2" value="2" <?php checked( 2, $cache_status->short_status() ); ?>> <label for="cacheability-ra$
+            <input type="radio" name="cacheability" id="cacheability-radio-0" value="0" <?php checked( 0, $cache_status->status() ); ?>> <label for="cacheability-radio-0" class="selectit"><?php echo $cache_status->choice_display(0) ?></label><br>
+            <input type="radio" name="cacheability" id="cacheability-radio-1" value="1" <?php checked( 1, $cache_status->status() ); ?>> <label for="cacheability-radio-1" class="selectit"><?php echo $cache_status->choice_display(1) ?></label><br>
+            <input type="radio" name="cacheability" id="cacheability-radio-2" value="2" <?php checked( 2, $cache_status->short_status() ); ?>> <label for="cacheability-radio-2" class="selectit"><?php echo $cache_status->choice_display(2) ?></label><br>
 
             <p>
                <a href="#cacheability" class="save-post-cacheability hide-if-no-js button"><?php echo __( 'OK' ); ?></a>
