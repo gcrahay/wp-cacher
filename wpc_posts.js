@@ -1,4 +1,4 @@
-(function( $ ) {
+jQuery(document).ready(function($){
     var $postCacheabilitySelect = $("#post-cacheability-select");
     var $postCacheability = $('#cacheability');
     function updateCacheability() {
@@ -30,4 +30,4 @@
             updateCacheability();
             event.preventDefault();
     });
-})( jQuery );
+});
