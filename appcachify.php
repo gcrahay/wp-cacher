@@ -303,7 +303,7 @@ if ( ! class_exists( 'appcachify' ) ) {
                                 $network = array( '*' );
                                 $fallback = array( '/ /offline/' );
                         }
-                        $network = array_merge( network, $this->get_permalinks( $this->get_explicitely_networked() ) );
+                        $network = array_merge( $network, $this->get_permalinks( $this->get_explicitely_networked() ) );
                         $src_dir = $this->theme->get_stylesheet_directory();
                         $src_url = $this->theme->get_stylesheet_directory_uri();
                         // $assets = $this->process_dir( $src_dir, true );
