@@ -38,14 +38,6 @@ class CacheStatus {
          return $status;
      }
 
-     function short_status() {
-         $status = $this->status();
-         if ( $status > 2) {
-             return 2;
-         }
-         return $status;
-     }
-
     function post_status() {
         if ( ! isset( $this->_post_status ) ) {
              $meta = get_post_meta( $this->_post->ID, '_wpc_cached', true );
