@@ -51,7 +51,7 @@ class CacheStatus {
         return $this->_post_status;
     }
 
- 	function is_cached_by_category() {
+     function is_cached_by_category() {
          if ( ! isset( $this->_cached_by_category ) ) {
               $post_categories = wp_get_post_categories( $this->_post->ID );
               $cached_categories = get_option( 'wpc_cached_categories', Array() );
@@ -74,25 +74,11 @@ class CacheStatus {
         return $this->_labels[$status];
     }
 
-     function is_cached_by_category() {
-         if ( ! isset( $this->_cached_by_category ) ) {
-              $post_categories = wp_get_post_categories( $this->_post->ID );
-              $cached_categories = get_option( 'wpc_cached_categories', Array() );
-
-              if ( ! $cached_categories ) {
-                  $cached_categories = Array();
-              }
-
-              $common_categories = array_intersect( $post_categories, $cached_categories );
-
-              $this->_cached_by_category = count( $common_categories ) > 0;
-         }
-         return $this->_cached_by_category;
-    }
-
-    function display( $status = NULL ) {
-        if ( $status == NULL ) {
-             $status = $this->status();
+    function choice_display( $status ) {
+        if ( $status == 2) {
+            if ( $this->is_cached_by_category() ) {
+                 return $this->_labels[3];
+            }
         }
         return $this->_labels[$status];
     }
