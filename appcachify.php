@@ -216,20 +216,15 @@ if ( ! class_exists( 'appcachify' ) ) {
 
                 public function get_explicitely_cached() {
                        $args = array(
-			'posts_per_page'   => 50,
-			'offset'           => 0,
-                	'meta_key'         => '_wpc_cached',
-	                'meta_value'       => '1',
-                	'post_type'        => 'any',
-	                'post_status'      => 'publish',
-	                'suppress_filters' => true
+						'posts_per_page'   => 50,
+						'offset'           => 0,
+                		'meta_key'         => '_wpc_cached',
+	                	'meta_value'       => '1',
+                		'post_type'        => 'any',
+	                	'post_status'      => 'publish',
+	                	'suppress_filters' => true
                        );
                        return  get_posts( $args );
-                       $path_array = array();
-                       foreach ( $posts_array as $post ) {
-                            array_push($path_array, get_permalink( $post ) );
-                       }
-                       return $path_array;
                 }
 
                 public function get_explicitely_networked() {
