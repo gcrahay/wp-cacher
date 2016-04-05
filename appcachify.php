@@ -277,9 +277,8 @@ if ( ! class_exists( 'appcachify' ) ) {
                 }
 
                 public function get_cached_posts() {
-                     $cached = array();
-                     $cached += $this->get_permalinks( $this->get_cached_by_category() );
-                     $cached += $this->get_permalinks( $this->get_explicitely_cached() );
+                     $cached = array_merge($this->get_permalinks( $this->get_cached_by_category() ),
+                     					   $this->get_permalinks( $this->get_explicitely_cached() ));
                      return array_unique( $cached );
                 }
 
@@ -297,14 +296,14 @@ if ( ! class_exists( 'appcachify' ) ) {
                         $assets_updated = 0;
                         $assets_size = 0;
                         // get queued js & css
-                        $cache += $this->get_assets( $wp_scripts );
-                        $cache += $this->get_assets( $wp_styles );
-                        $cache += $this->get_cached_posts();
+                        $cache = array_merge( $cache, $this->get_assets( $wp_scripts ) );
+                        $cache = array_merge( $cache, $this->get_assets( $wp_styles ) );
+                        $cache = array_merge( $cache, $this->get_cached_posts() );
                         if ( $this->offline_mode ) {
                                 $network = array( '*' );
                                 $fallback = array( '/ /offline/' );
                         }
-                        $network += $this->get_permalinks( $this->get_explicitely_networked() );
+                        $network = array_merge( network, $this->get_permalinks( $this->get_explicitely_networked() ) );
                         $src_dir = $this->theme->get_stylesheet_directory();
                         $src_url = $this->theme->get_stylesheet_directory_uri();
                         // $assets = $this->process_dir( $src_dir, true );
@@ -315,7 +314,7 @@ if ( ! class_exists( 'appcachify' ) ) {
                                 else
                                         $item = rtrim( $src_url, '/' ) . '/' . ltrim( $relative_path, '/' );
                                 } );
-                        $cache += $assets;
+                        $cache = array_merge( $cache, $assets );
                         foreach( array( 'cache', 'network', 'fallback' ) as $section ) {
                                 $$section = array_filter( array_unique( apply_filters( "appcache_{$section}", $$section ) ) );
                         }
