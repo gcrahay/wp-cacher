@@ -50,7 +50,7 @@ if ( ! class_exists( 'appcachify' ) ) {
                 }
                 public function __construct() {
                         if ( ! is_admin() )
-                                add_action( 'wp_footer', array( $this, 'manifest_page_frame' ) );
+                                add_filter( 'language_attributes', array( $this, 'manifest_attribute' ) );
                         add_action( 'template_redirect', array( $this, 'template_redirect' ) );
                         $this->theme = wp_get_theme();
                         $this->extensions = apply_filters( 'appcachify_extensions', array( 'jpg', 'jpeg', 'png', 'gif', 'svg', 'xml', 'swf' ) );
@@ -134,6 +134,17 @@ if ( ! class_exists( 'appcachify' ) ) {
                  */
                 public function manifest_page() {
                         echo '<!DOCTYPE html><html manifest="' . $this->manifest_url( true, false ) . '"><head><title></title></head><body></body></html>';
+                }
+                /**
+                 * Filter to update the HTNL tag attributes
+                 *
+                 * @param string $attrs Original HTML tag attributes
+                 *
+                 * @return string    HTML tag attributes
+                 */
+                public function manifest_attribute( $attrs ) {
+                       $attrs .= "\n manifest=\"" . $this->manifest_url( true, false ) . "\"";
+	               return $attrs;
                 }
                 /**
                  * Iframe referencing the manifest page
