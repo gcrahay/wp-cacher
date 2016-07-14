@@ -296,6 +296,7 @@ if ( ! class_exists( 'appcachify' ) ) {
                         $assets_updated = 0;
                         $assets_size = 0;
                         // get queued js & css
+                        array_push( $cache,  get_home_url(null, '/') );
                         $cache = array_merge( $cache, $this->get_assets( $wp_scripts ) );
                         $cache = array_merge( $cache, $this->get_assets( $wp_styles ) );
                         $cache = array_merge( $cache, $this->get_cached_posts() );
