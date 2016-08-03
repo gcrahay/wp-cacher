@@ -282,6 +282,10 @@ if ( ! class_exists( 'appcachify' ) ) {
                 public function get_permalinks( $posts ) {
                        $path_array = array();
                        foreach ( $posts as $post ) {
+                       	    $media = get_attached_media( 'image', $post->ID );
+                            foreach ( $media as $medium ) {
+                                array_push($path_array, wp_get_attachment_url( $medium->ID ) );
+                            }
                             array_push($path_array, get_permalink( $post ) );
                        }
                        return $path_array;
